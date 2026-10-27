@@ -18,7 +18,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="RightThumb dead zone:"/>
+                               Text="右摇杆死区："/>
                     <metro:NumericUpDown DockPanel.Dock="Right"
                                          Interval="0.01"
                                          Maximum="1"
@@ -31,7 +31,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="LeftThumb dead zone:"/>
+                               Text="左摇杆死区："/>
                     <metro:NumericUpDown Interval="0.01"
                                          Maximum="1"
                                          Minimum="0"
@@ -43,7 +43,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="Trigger dead zone:"/>
+                               Text="扳机死区："/>
                     <metro:NumericUpDown Interval="0.01"
                                          Maximum="1"
                                          Minimum="0"
@@ -58,7 +58,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="Mouse zone width:"/>
+                               Text="鼠标区域宽度："/>
                     <metro:NumericUpDown DockPanel.Dock="Right"
                                          Minimum="1"
                                          StringFormat="{}{0}px"
@@ -69,7 +69,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="Mouse zone height:"/>
+                               Text="鼠标区域高度："/>
                     <metro:NumericUpDown DockPanel.Dock="Right"
                                          Minimum="1"
                                          StringFormat="{}{0}px"
@@ -80,7 +80,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="Wheel zone width:"/>
+                               Text="滚轮区域宽度："/>
                     <metro:NumericUpDown DockPanel.Dock="Right"
                                          Minimum="1"
                                          StringFormat="{}{0}steps"
@@ -91,7 +91,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="Wheel zone height:"/>
+                               Text="滚轮区域高度："/>
                     <metro:NumericUpDown DockPanel.Dock="Right"
                                          Minimum="1"
                                          StringFormat="{}{0}steps"
@@ -102,7 +102,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 5 0"
                                VerticalAlignment="Center"
-                               Text="Mouse axis update rate:"/>
+                               Text="鼠标轴更新频率："/>
                     <metro:NumericUpDown DockPanel.Dock="Right"
                                          Maximum="1000"
                                          Minimum="30"

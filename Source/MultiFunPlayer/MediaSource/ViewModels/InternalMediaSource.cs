@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace MultiFunPlayer.MediaSource.ViewModels;
 
-[DisplayName("Internal")]
+[DisplayName("内置")]
 internal sealed class InternalMediaSource(ILocalScriptRepository localRepository, IShortcutManager shortcutManager, IPropertyManager propertyManager, IEventAggregator eventAggregator)
     : AbstractMediaSource(shortcutManager, propertyManager, eventAggregator)
 {

@@ -23,7 +23,7 @@
                            FontSize="14"
                            FontWeight="Bold"
                            Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                           Text="Plugins"
+                           Text="插件"
                            Typography.Capitals="AllSmallCaps"/>
 
                 <Button Style="{StaticResource MaterialDesignFlatButton}"
@@ -130,7 +130,7 @@
                                         material:ButtonAssist.CornerRadius="0"
                                         Click="{s:Action QueueCompile}"
                                         IsEnabled="{Binding CanCompile}"
-                                        ToolTip="Compile">
+                                        ToolTip="编译">
                                     <material:PackIcon Kind="Replay"/>
                                 </Button>
                             </DockPanel>

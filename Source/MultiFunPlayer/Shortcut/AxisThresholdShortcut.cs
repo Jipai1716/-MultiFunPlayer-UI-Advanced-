@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Axis Threshold")]
+[DisplayName("轴阈值")]
 internal sealed class AxisThresholdShortcut(IShortcutActionRunner actionRunner, IAxisInputGestureDescriptor gesture)
     : AbstractShortcut<IAxisInputGesture, IEmptyInputGestureData>(actionRunner, gesture)
 {

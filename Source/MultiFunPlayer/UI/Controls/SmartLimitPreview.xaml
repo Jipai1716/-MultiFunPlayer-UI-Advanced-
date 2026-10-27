@@ -1,4 +1,4 @@
-<UserControl x:Class="MultiFunPlayer.UI.Controls.SmartLimitPreview"
+﻿<UserControl x:Class="MultiFunPlayer.UI.Controls.SmartLimitPreview"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,7 +23,7 @@
                        Canvas.Bottom="5"
                        FontSize="11"
                        FontWeight="Bold"
-                       Text="Input"
+                       Text="输入"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
                        Typography.Capitals="AllSmallCaps"/>
@@ -48,7 +48,7 @@
                        Canvas.Bottom="70"
                        FontSize="11"
                        FontWeight="Bold"
-                       Text="Output"
+                       Text="输出"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
                        Typography.Capitals="AllSmallCaps">

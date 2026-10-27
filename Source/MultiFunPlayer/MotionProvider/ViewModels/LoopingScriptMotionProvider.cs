@@ -11,7 +11,7 @@ using System.Reflection;
 
 namespace MultiFunPlayer.MotionProvider.ViewModels;
 
-[DisplayName("Looping Script")]
+[DisplayName("循环脚本")]
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 internal sealed class LoopingScriptMotionProvider(DeviceAxis target, IEventAggregator eventAggregator) : AbstractMotionProvider(target, eventAggregator)
 {

@@ -64,7 +64,7 @@
                 <ToggleButton DockPanel.Dock="Left"
                               Style="{StaticResource MaterialDesignToolBarToggleButton}"
                               IsChecked="{Binding AutoConnectEnabled}"
-                              ToolTip="Auto-connect">
+                              ToolTip="自动连接">
                     <material:PackIcon Width="20"
                                        Height="20"
                                        Kind="MotionPlayOutline"
@@ -79,7 +79,7 @@
                 <ToggleButton DockPanel.Dock="Left"
                               Style="{StaticResource MaterialDesignToolBarToggleButton}"
                               IsChecked="{Binding AutoStartEnabled}"
-                              ToolTip="Auto-start">
+                              ToolTip="自动开始">
                     <material:PackIcon Width="20"
                                        Height="20"
                                        Kind="AutoStart"

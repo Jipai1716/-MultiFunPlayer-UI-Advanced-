@@ -1,4 +1,4 @@
-<UserControl x:Class="MultiFunPlayer.Script.Repository.Views.XBVRScriptRepository"
+﻿<UserControl x:Class="MultiFunPlayer.Script.Repository.Views.XBVRScriptRepository"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:MultiFunPlayer.UI.Controls"
@@ -15,7 +15,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Endpoint:"/>
+                       Text="地址："/>
 
             <controls:UriBox DockPanel.Dock="Left"
                              Schemes="http https"
@@ -27,7 +27,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Local match type:"/>
+                       Text="本地匹配方式："/>
 
             <ComboBox DockPanel.Dock="Left"
                       ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type repository:XBVRLocalMatchType}}}"
@@ -39,7 +39,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Dms match type:"/>
+                       Text="DMS 匹配方式："/>
 
             <ComboBox DockPanel.Dock="Left"
                       ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type repository:XBVRDmsMatchType}}}"

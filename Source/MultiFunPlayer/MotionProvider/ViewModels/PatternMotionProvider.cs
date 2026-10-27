@@ -18,7 +18,7 @@ public enum PatternType
     Square
 }
 
-[DisplayName("Pattern")]
+[DisplayName("波形")]
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 internal sealed class PatternMotionProvider(DeviceAxis target, IEventAggregator eventAggregator) : AbstractMotionProvider(target, eventAggregator)
 {

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Button Click")]
+[DisplayName("按键单击")]
 internal sealed class ButtonClickShortcut(IShortcutActionRunner actionRunner, IButtonInputGestureDescriptor gesture)
     : AbstractShortcut<IButtonInputGesture, IEmptyInputGestureData>(actionRunner, gesture)
 {

@@ -1,0 +1,125 @@
+<UserControl x:Class="MultiFunPlayer.UI.Controls.AxisRangeEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             d:DesignHeight="80"
+             d:DesignWidth="240"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <!--
+        单个轴的"上下限"编辑行（VR 优化版）：
+        * 大抓柄双柄滑条，整行可按相对拖动
+        * 下限/上限各配一对 ± 步进按钮，便于精确定位
+    -->
+    <StackPanel Margin="0 0 16 8">
+
+        <DockPanel LastChildFill="False" Margin="0 0 0 2">
+            <ToggleButton DockPanel.Dock="Left"
+                          Width="26"
+                          Height="20"
+                          Padding="0"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding Value.Enabled}"
+                          ToolTip="启用该轴输出">
+                <ToggleButton.Resources>
+                    <Style BasedOn="{StaticResource MaterialDesignPaperButton}" TargetType="{x:Type ToggleButton}">
+                        <Setter Property="material:ElevationAssist.Elevation" Value="Dp0"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                                <Setter Property="material:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Resources>
+
+                <TextBlock FontSize="12" FontWeight="Bold" Text="{Binding Key}"/>
+            </ToggleButton>
+
+            <TextBlock DockPanel.Dock="Left"
+                       Margin="8 0 0 0"
+                       VerticalAlignment="Center"
+                       FontSize="12"
+                       Foreground="{DynamicResource MaterialDesignBodyDisabledBrush}">
+                <Run Text="{Binding Value.Minimum, Mode=OneWay, StringFormat=P0}"/>
+                <Run Text="~"/>
+                <Run Text="{Binding Value.Maximum, Mode=OneWay, StringFormat=P0}"/>
+            </TextBlock>
+        </DockPanel>
+
+        <metro:RangeSlider x:Name="Range"
+                           Style="{StaticResource MaterialDesignCompactRangeSlider}"
+                           AutoToolTipPlacement="TopLeft"
+                           AutoToolTipPrecision="2"
+                           IsEnabled="{Binding Value.Enabled}"
+                           LowerValue="{Binding Value.Minimum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           Maximum="1.00"
+                           MinRange="0.01"
+                           MinRangeWidth="10"
+                           Minimum="0.00"
+                           UpperValue="{Binding Value.Maximum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           UseLayoutRounding="False">
+            <metro:RangeSlider.AutoToolTipLowerValueTemplate>
+                <DataTemplate>
+                    <TextBlock HorizontalAlignment="Right" Text="{Binding StringFormat={}{0:P1}}"/>
+                </DataTemplate>
+            </metro:RangeSlider.AutoToolTipLowerValueTemplate>
+            <metro:RangeSlider.AutoToolTipUpperValueTemplate>
+                <DataTemplate>
+                    <TextBlock HorizontalAlignment="Right" Text="{Binding StringFormat={}{0:P1}}"/>
+                </DataTemplate>
+            </metro:RangeSlider.AutoToolTipUpperValueTemplate>
+            <metro:RangeSlider.AutoToolTipRangeValuesTemplate>
+                <DataTemplate DataType="{x:Type metro:RangeSliderAutoTooltipValues}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LowerValue, StringFormat={}{0:P1}}"/>
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding UpperValue, StringFormat={}{0:P1}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </metro:RangeSlider.AutoToolTipRangeValuesTemplate>
+        </metro:RangeSlider>
+
+        <UniformGrid Columns="2" Margin="0 0 0 0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock VerticalAlignment="Center"
+                           Width="34"
+                           FontSize="12"
+                           Foreground="{DynamicResource MaterialDesignBodyDisabledBrush}"
+                           Text="下限"/>
+                <Button Width="34" Height="28" Padding="0" Content="−"
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        material:ElevationAssist.Elevation="Dp0"
+                        ToolTip="下限 −1%"
+                        Click="OnLowerDecreaseClick"/>
+                <Button Width="34" Height="28" Margin="4 0 0 0" Padding="0" Content="+"
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        material:ElevationAssist.Elevation="Dp0"
+                        ToolTip="下限 +1%"
+                        Click="OnLowerIncreaseClick"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock VerticalAlignment="Center"
+                           Width="34"
+                           FontSize="12"
+                           Foreground="{DynamicResource MaterialDesignBodyDisabledBrush}"
+                           Text="上限"/>
+                <Button Width="34" Height="28" Padding="0" Content="−"
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        material:ElevationAssist.Elevation="Dp0"
+                        ToolTip="上限 −1%"
+                        Click="OnUpperDecreaseClick"/>
+                <Button Width="34" Height="28" Margin="4 0 0 0" Padding="0" Content="+"
+                        Style="{StaticResource MaterialDesignPaperButton}"
+                        material:ElevationAssist.Elevation="Dp0"
+                        ToolTip="上限 +1%"
+                        Click="OnUpperIncreaseClick"/>
+            </StackPanel>
+        </UniformGrid>
+    </StackPanel>
+</UserControl>

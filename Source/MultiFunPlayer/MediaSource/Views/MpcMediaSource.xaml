@@ -61,7 +61,7 @@
                 <ToggleButton DockPanel.Dock="Left"
                               Style="{StaticResource MaterialDesignToolBarToggleButton}"
                               IsChecked="{Binding AutoConnectEnabled}"
-                              ToolTip="Auto-connect">
+                              ToolTip="自动连接">
                     <material:PackIcon Width="20"
                                        Height="20"
                                        Kind="MotionPlayOutline"
@@ -80,7 +80,7 @@
                 <TextBlock DockPanel.Dock="Left"
                            Margin="0 0 10 0"
                            VerticalAlignment="Center"
-                           Text="Endpoint:"/>
+                           Text="地址："/>
 
                 <controls:EndPointBox DockPanel.Dock="Left"
                                       HorizontalAlignment="Left"

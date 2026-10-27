@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Axis Offset")]
+[DisplayName("轴偏移")]
 internal sealed class AxisOffsetShortcut(IShortcutActionRunner actionRunner, IAxisInputGestureDescriptor gesture)
     : AbstractShortcut<IAxisInputGesture, IAxisInputGestureData>(actionRunner, gesture)
 {

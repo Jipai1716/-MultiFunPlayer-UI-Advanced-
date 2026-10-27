@@ -14,7 +14,7 @@ using System.Windows;
 namespace MultiFunPlayer.Script.Repository.ViewModels;
 
 [DisplayIndex(0)]
-[DisplayName("Local")]
+[DisplayName("本地")]
 [JsonObject(MemberSerialization.OptIn)]
 internal sealed class LocalScriptRepository : AbstractScriptRepository, ILocalScriptRepository
 {

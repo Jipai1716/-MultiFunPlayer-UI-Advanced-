@@ -24,7 +24,7 @@
                 Style="{DynamicResource MaterialDesignFlatLightBgButton}"
                 HorizontalAlignment="Center"
                 Command="{x:Static material:DialogHost.CloseDialogCommand}"
-                Content="Dismiss"
+                Content="关闭"
                 IsDefault="True"/>
     </Grid>
 </UserControl>

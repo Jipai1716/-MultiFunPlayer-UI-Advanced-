@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace MultiFunPlayer.MotionProvider.ViewModels;
 
-[DisplayName("Custom Curve")]
+[DisplayName("自定义曲线")]
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 internal sealed class CustomCurveMotionProvider : AbstractMotionProvider
 {

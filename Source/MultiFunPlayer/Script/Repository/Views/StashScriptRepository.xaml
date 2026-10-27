@@ -1,4 +1,4 @@
-<UserControl x:Class="MultiFunPlayer.Script.Repository.Views.StashScriptRepository"
+﻿<UserControl x:Class="MultiFunPlayer.Script.Repository.Views.StashScriptRepository"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:common="clr-namespace:MultiFunPlayer.Common"
@@ -17,7 +17,7 @@
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <TextBlock Margin="0 0 10 0"
                            VerticalAlignment="Center"
-                           Text="Endpoint:"/>
+                           Text="地址："/>
 
                 <controls:UriBox DockPanel.Dock="Left"
                                  Schemes="http https"
@@ -28,10 +28,10 @@
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                 <TextBlock Margin="0 0 10 0"
                            VerticalAlignment="Center"
-                           Text="Api key:"/>
+                           Text="API 密钥："/>
 
                 <TextBox Width="150"
-                         material:HintAssist.Hint="(optional)"
+                         material:HintAssist.Hint="（可选）"
                          material:TextFieldAssist.HasClearButton="True"
                          Text="{Binding ApiKey}"/>
             </StackPanel>
@@ -41,7 +41,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Local match type:"/>
+                       Text="本地匹配方式："/>
 
             <ComboBox DockPanel.Dock="Left"
                       ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type repository:StashLocalMatchType}}}"
@@ -54,7 +54,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Dms match type:"/>
+                       Text="DMS 匹配方式："/>
 
             <ComboBox DockPanel.Dock="Left"
                       ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type repository:StashDmsMatchType}}}"
@@ -76,7 +76,7 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <Label Margin="15 0 5 0" Content="Axis:"/>
+                <Label Margin="15 0 5 0" Content="轴："/>
                 <ComboBox DockPanel.Dock="Left"
                           ItemsSource="{Binding Source={x:Static common:DeviceAxis.All}}"
                           SelectedItem="{Binding DmsMatchAxis}"

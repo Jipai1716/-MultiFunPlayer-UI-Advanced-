@@ -19,7 +19,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Pattern:"/>
+                       Text="波形："/>
             <ComboBox DockPanel.Dock="Right"
                       ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type local:PatternType}}}"
                       SelectedItem="{Binding Pattern}"/>
@@ -29,7 +29,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Speed:"/>
+                       Text="速度："/>
 
             <metro:NumericUpDown Style="{StaticResource MaterialDesignNumericUpDown}"
                                  HideUpDownButtons="False"
@@ -44,7 +44,7 @@
             <TextBlock DockPanel.Dock="Left"
                        Margin="0 0 10 0"
                        VerticalAlignment="Center"
-                       Text="Range:"/>
+                       Text="范围："/>
 
             <metro:RangeSlider DockPanel.Dock="Right"
                                Style="{StaticResource MaterialDesignCompactRangeSlider}"

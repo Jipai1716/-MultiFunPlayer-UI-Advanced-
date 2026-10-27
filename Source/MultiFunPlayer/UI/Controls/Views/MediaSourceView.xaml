@@ -45,7 +45,7 @@
                             <material:PopupBox Style="{StaticResource MaterialDesignToolBarPopupBox}"
                                                PlacementMode="RightAndAlignMiddles"
                                                PopupHorizontalOffset="-5"
-                                               ToolTip="Toggle media source">
+                                               ToolTip="切换媒体源">
                                 <material:PopupBox.ToggleContent>
                                     <material:PackIcon Width="22"
                                                        Height="22"
@@ -101,7 +101,7 @@
                             <Button Style="{StaticResource MaterialDesignToolBarButton}"
                                     Padding="8"
                                     Command="{x:Static material:DialogHost.OpenDialogCommand}"
-                                    ToolTip="Common settings">
+                                    ToolTip="通用设置">
                                 <Button.CommandParameter>
                                     <Grid Width="200"
                                           MaxHeight="400"
@@ -111,7 +111,7 @@
                                                    VerticalAlignment="Top"
                                                    FontSize="14"
                                                    FontWeight="Bold"
-                                                   Text="Media source settings"
+                                                   Text="媒体源设置"
                                                    Typography.Capitals="AllSmallCaps"/>
 
                                         <Button Style="{StaticResource MaterialDesignFlatButton}"
@@ -133,7 +133,7 @@
                                                 <TextBlock DockPanel.Dock="Left"
                                                            Margin="0 0 10 0"
                                                            VerticalAlignment="Center"
-                                                           Text="Scan delay: "/>
+                                                           Text="扫描延迟："/>
                                                 <material:ColorZone DockPanel.Dock="Right"
                                                                     Width="14"
                                                                     Height="14"
@@ -166,7 +166,7 @@
                                                 <TextBlock DockPanel.Dock="Left"
                                                            Margin="0 0 10 0"
                                                            VerticalAlignment="Center"
-                                                           Text="Scan interval: "/>
+                                                           Text="扫描间隔："/>
                                                 <metro:NumericUpDown DockPanel.Dock="Left"
                                                                      Interval="100"
                                                                      Minimum="0"

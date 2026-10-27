@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Toggle Enable")]
+[DisplayName("切换启用")]
 internal sealed class ToggleEnableShortcut(IShortcutActionRunner actionRunner, IToggleInputGestureDescriptor gesture)
     : AbstractShortcut<IToggleInputGesture, IToggleInputGestureData>(actionRunner, gesture)
 {

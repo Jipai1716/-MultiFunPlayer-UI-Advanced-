@@ -77,7 +77,7 @@
                 <ToggleButton DockPanel.Dock="Left"
                               Style="{StaticResource MaterialDesignToolBarToggleButton}"
                               IsChecked="{Binding AutoConnectEnabled}"
-                              ToolTip="Auto-connect">
+                              ToolTip="自动连接">
                     <material:PackIcon Width="20"
                                        Height="20"
                                        Kind="MotionPlayOutline"
@@ -96,7 +96,7 @@
                         material:ButtonProgressAssist.Value="-1"
                         Click="{s:Action ToggleScan}"
                         IsEnabled="{Binding CanScan}"
-                        ToolTip="Toggle Scan">
+                        ToolTip="切换扫描">
                     <material:PackIcon Width="20"
                                        Height="20"
                                        Kind="MagnifyScan"/>
@@ -106,7 +106,7 @@
                                    Style="{StaticResource MaterialDesignToolBarPopupBox}"
                                    PlacementMode="BottomAndAlignRightEdges"
                                    StaysOpen="True"
-                                   ToolTip="Update settings">
+                                   ToolTip="更新设置">
                     <material:PopupBox.ToggleContent>
                         <material:PackIcon Width="20"
                                            Height="20"
@@ -114,14 +114,14 @@
                     </material:PopupBox.ToggleContent>
                     <StackPanel Width="250" Margin="10 0 10 0">
                         <TextBlock FontWeight="Bold"
-                                   Text="Fixed Update"
+                                   Text="固定间隔更新"
                                    Typography.Capitals="AllSmallCaps"/>
                         <ContentControl Content="{Binding UpdateContexts[FixedUpdate]}"/>
 
                         <Separator/>
 
                         <TextBlock FontWeight="Bold"
-                                   Text="Polled Update"
+                                   Text="轮询更新"
                                    Typography.Capitals="AllSmallCaps"/>
                         <ContentControl Content="{Binding UpdateContexts[PolledUpdate]}"/>
                     </StackPanel>
@@ -137,7 +137,7 @@
                     <TextBlock DockPanel.Dock="Left"
                                Margin="0 0 10 0"
                                VerticalAlignment="Center"
-                               Text="Endpoint:"/>
+                               Text="地址："/>
 
                     <controls:EndPointBox DockPanel.Dock="Left"
                                           Margin="0 0 20 0"
@@ -149,78 +149,19 @@
             <TextBlock HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        FontWeight="Bold"
-                       Text="Output Range"
+                       Text="输出范围"
                        Typography.Capitals="AllSmallCaps"/>
             <ItemsControl ItemsSource="{Binding AxisSettings}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Margin="0 0 -13 0"
-                                     Columns="3"
+                                     Columns="2"
                                      IsItemsHost="True"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel Margin="0 0 20 1" LastChildFill="True">
-                            <ToggleButton DockPanel.Dock="Left"
-                                          Width="20"
-                                          Height="14"
-                                          Padding="0"
-                                          VerticalAlignment="Center"
-                                          IsChecked="{Binding Value.Enabled}">
-                                <ToggleButton.Resources>
-                                    <Style BasedOn="{StaticResource MaterialDesignPaperButton}" TargetType="{x:Type ToggleButton}">
-                                        <Setter Property="material:ElevationAssist.Elevation" Value="Dp0"/>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
-                                                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
-                                                <Setter Property="material:RippleAssist.Feedback" Value="{DynamicResource PrimaryHueMidForegroundBrush}"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ToggleButton.Resources>
-
-                                <TextBlock FontSize="10"
-                                           FontWeight="Bold"
-                                           Text="{Binding Key}"/>
-                            </ToggleButton>
-
-                            <Canvas DockPanel.Dock="Right" HorizontalAlignment="Stretch">
-                                <metro:RangeSlider Style="{StaticResource MaterialDesignCompactRangeSlider}"
-                                                   Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
-                                                   AutoToolTipPlacement="TopLeft"
-                                                   AutoToolTipPrecision="2"
-                                                   IsEnabled="{Binding Value.Enabled}"
-                                                   LowerValue="{Binding Value.Minimum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                   Maximum="1.00"
-                                                   MinRange="0.01"
-                                                   MinRangeWidth="10"
-                                                   Minimum="0.00"
-                                                   UpperValue="{Binding Value.Maximum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                   UseLayoutRounding="False">
-                                    <metro:RangeSlider.AutoToolTipLowerValueTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Right" Text="{Binding Converter={StaticResource AutoToolTipValueToPercentConverter}}"/>
-                                        </DataTemplate>
-                                    </metro:RangeSlider.AutoToolTipLowerValueTemplate>
-                                    <metro:RangeSlider.AutoToolTipUpperValueTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Right" Text="{Binding Converter={StaticResource AutoToolTipValueToPercentConverter}}"/>
-                                        </DataTemplate>
-                                    </metro:RangeSlider.AutoToolTipUpperValueTemplate>
-                                    <metro:RangeSlider.AutoToolTipRangeValuesTemplate>
-                                        <DataTemplate DataType="{x:Type metro:RangeSliderAutoTooltipValues}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding LowerValue, Converter={StaticResource AutoToolTipValueToPercentConverter}}"/>
-                                                <TextBlock Text=" - "/>
-                                                <TextBlock Text="{Binding UpperValue, Converter={StaticResource AutoToolTipValueToPercentConverter}}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </metro:RangeSlider.AutoToolTipRangeValuesTemplate>
-                                </metro:RangeSlider>
-                            </Canvas>
-                        </DockPanel>
+                        <controls:AxisRangeEditor/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -230,7 +171,7 @@
                     <Expander.Header>
                         <TextBlock FontSize="14"
                                    FontWeight="Bold"
-                                   Text="Device map"
+                                   Text="设备映射"
                                    Typography.Capitals="AllSmallCaps"/>
                     </Expander.Header>
                     <StackPanel Margin="10 0 10 10">
@@ -345,7 +286,7 @@
                                                         <TextBlock Width="55"
                                                                    FontSize="11"
                                                                    FontWeight="Bold"
-                                                                   Text="Device:"
+                                                                   Text="设备："
                                                                    Typography.Capitals="Normal"/>
                                                         <TextBlock FontSize="11" Text="{Binding DeviceName}"/>
                                                         <TextBlock FontSize="11" Text="{Binding DeviceIndex, StringFormat=/{0}}"/>
@@ -355,7 +296,7 @@
                                                         <TextBlock Width="55"
                                                                    FontSize="11"
                                                                    FontWeight="Bold"
-                                                                   Text="Actuator:"
+                                                                   Text="执行器："
                                                                    Typography.Capitals="Normal"/>
                                                         <TextBlock FontSize="11" Text="{Binding ActuatorType}"/>
                                                         <TextBlock FontSize="11" Text="{Binding ActuatorIndex, StringFormat=/{0}}"/>
@@ -372,7 +313,7 @@
                                                     material:RippleAssist.Feedback="{DynamicResource MaterialDesignErrorBrush}"
                                                     Click="{s:Action OnSettingsDelete}"
                                                     Foreground="{DynamicResource MaterialDesignErrorBrush}"
-                                                    ToolTip="Remove">
+                                                    ToolTip="移除">
                                                 <material:PackIcon Width="16"
                                                                    Height="16"
                                                                    Kind="Delete"/>
@@ -393,7 +334,7 @@
                                                        VerticalAlignment="Center"
                                                        FontSize="12"
                                                        FontWeight="Bold"
-                                                       Text="Update:"/>
+                                                       Text="更新："/>
                                         </DockPanel>
                                     </Border>
                                 </DataTemplate>
@@ -406,14 +347,14 @@
                                       Width="50"
                                       Margin="5 0 10 0"
                                       HorizontalAlignment="Center"
-                                      material:HintAssist.HelperText="Axes"
+                                      material:HintAssist.HelperText="轴"
                                       material:TextFieldAssist.HasClearButton="True"/>
 
                             <ComboBox ItemsSource="{Binding AvailableDevices}"
                                       SelectedItem="{Binding SelectedDevice}"
                                       Width="215"
                                       Margin="0 0 10 0"
-                                      material:HintAssist.HelperText="Connected devices"
+                                      material:HintAssist.HelperText="已连接设备"
                                       material:TextFieldAssist.HasClearButton="True"
                                       IsEnabled="{Binding AvailableDevices.Count, Converter={StaticResource NotZeroConverter}}">
                                 <ComboBox.ItemTemplate>
@@ -430,7 +371,7 @@
                                       SelectedItem="{Binding SelectedActuatorType}"
                                       Width="130"
                                       Margin="0 0 10 0"
-                                      material:HintAssist.HelperText="Actuator types"
+                                      material:HintAssist.HelperText="执行器类型"
                                       material:TextFieldAssist.HasClearButton="True"
                                       IsEnabled="{Binding SelectedDevice, Converter={StaticResource InvertedNullableToBooleanConverter}}"/>
 
@@ -438,7 +379,7 @@
                                       SelectedItem="{Binding SelectedActuatorIndex}"
                                       Width="50"
                                       Margin="0 0 10 0"
-                                      material:HintAssist.HelperText="Indices"
+                                      material:HintAssist.HelperText="索引"
                                       material:TextFieldAssist.HasClearButton="True"
                                       IsEnabled="{Binding SelectedActuatorType, Converter={StaticResource InvertedNullableToBooleanConverter}}"/>
 
@@ -450,7 +391,7 @@
                                     Click="{s:Action OnSettingsAdd}"
                                     Foreground="{DynamicResource MaterialDesignSuccessBrush}"
                                     IsEnabled="{Binding CanAddSelected}"
-                                    ToolTip="Add">
+                                    ToolTip="添加">
                                 <Button.Background>
                                     <SolidColorBrush Opacity="0.16" Color="{DynamicResource MaterialDesignSuccessColor}"/>
                                 </Button.Background>

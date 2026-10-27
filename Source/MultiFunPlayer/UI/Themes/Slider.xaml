@@ -1,112 +1,278 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:behaviours="clr-namespace:MultiFunPlayer.UI.Behaviours"
                     xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Style x:Key="MaterialDesignReversedSlider" TargetType="{x:Type Slider}">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
-        <Setter Property="Background" Value="{x:Null}"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-        <Setter Property="IsMoveToPointEnabled" Value="True"/>
-        <Setter Property="material:ShadowAssist.ShadowDepth" Value="Depth1"/>
-        <Setter Property="SnapsToDevicePixels" Value="False"/>
-        <Setter Property="UseLayoutRounding" Value="False"/>
+
+    <!--
+        VR 友好的滑条主题：
+        * 抓柄 32x32（原先约 20px），带抓握纹路
+        * 轨道 12px 粗（原先 4~6px）
+        * 整个滑条都可按下拖动（配合 SliderAssist.RelativeDrag 的相对拖动）
+    -->
+
+    <SolidColorBrush x:Key="VrSliderInactiveTrackBrush" po:Freeze="True"
+                     xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                     Color="{StaticResource Primary200}"
+                     Opacity="0.45"/>
+
+    <LinearGradientBrush x:Key="VrSliderThumbBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#F2F8FD"/>
+        <GradientStop Offset="1" Color="#C6D6E4"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="VrSliderThumbBorderBrush" Color="#7FA4BF"/>
+    <SolidColorBrush x:Key="VrSliderThumbGripBrush" Color="#7D97AB"/>
+
+    <!-- 轨道分段 -->
+    <Style x:Key="VrSliderTrackButtonBase" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Slider}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="True"
-                            UseLayoutRounding="True">
-                        <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <TickBar x:Name="TopTick"
-                                     Grid.Row="0"
-                                     Height="4"
-                                     Margin="0 0 0 2"
-                                     Fill="{TemplateBinding Foreground}"
-                                     Placement="Top"
-                                     Visibility="Collapsed"/>
-                            <TickBar x:Name="BottomTick"
-                                     Grid.Row="2"
-                                     Height="4"
-                                     Margin="0 2 0 0"
-                                     Fill="{TemplateBinding Foreground}"
-                                     Placement="Bottom"
-                                     Visibility="Collapsed"/>
-                            <Rectangle Grid.Row="1"
-                                       Height="4"
-                                       VerticalAlignment="Center"
-                                       Fill="{TemplateBinding Foreground}"
-                                       Opacity="0.38"
-                                       RadiusX="2"
-                                       RadiusY="2"/>
-                            <Border x:Name="activeTrack"
-                                    Grid.Row="1"
-                                    Width="{Binding IncreaseRepeatButton.ActualWidth, ElementName=PART_Track}"
-                                    Height="6"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Background="{TemplateBinding Foreground}"
-                                    CornerRadius="0,3,3,0"/>
-                            <Canvas Grid.Row="1"
-                                    Height="6"
-                                    VerticalAlignment="Center">
-                                <Rectangle x:Name="PART_SelectionRange"
-                                           Height="6"
-                                           Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
-                                           RadiusX="2"
-                                           RadiusY="2"
-                                           Visibility="Collapsed"/>
-                            </Canvas>
-                            <Track x:Name="PART_Track"
-                                   Grid.Row="1"
-                                   Height="20">
-                                <Track.DecreaseRepeatButton>
-                                    <RepeatButton Style="{StaticResource MaterialDesignRepeatButton}" Command="{x:Static Slider.DecreaseLarge}"/>
-                                </Track.DecreaseRepeatButton>
-                                <Track.IncreaseRepeatButton>
-                                    <RepeatButton Style="{StaticResource MaterialDesignRepeatButton}" Command="{x:Static Slider.IncreaseLarge}"/>
-                                </Track.IncreaseRepeatButton>
-                                <Track.Thumb>
-                                    <Thumb Foreground="{TemplateBinding Foreground}"
-                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                           Template="{StaticResource MaterialDesignSliderThumb}"/>
-                                </Track.Thumb>
-                            </Track>
-                        </Grid>
-                    </Border>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Height="12"
+                            VerticalAlignment="Center"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="6"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="VrSliderTrackButtonBaseVertical" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Width="12"
+                            HorizontalAlignment="Center"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="6"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="VrSliderDecreaseButton"
+           BasedOn="{StaticResource VrSliderTrackButtonBase}"
+           TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+    </Style>
+
+    <Style x:Key="VrSliderIncreaseButton"
+           BasedOn="{StaticResource VrSliderTrackButtonBase}"
+           TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="{StaticResource VrSliderInactiveTrackBrush}"/>
+    </Style>
+
+    <Style x:Key="VrSliderDecreaseButtonVertical"
+           BasedOn="{StaticResource VrSliderTrackButtonBaseVertical}"
+           TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="{StaticResource VrSliderInactiveTrackBrush}"/>
+    </Style>
+
+    <Style x:Key="VrSliderIncreaseButtonVertical"
+           BasedOn="{StaticResource VrSliderTrackButtonBaseVertical}"
+           TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"/>
+    </Style>
+
+    <!-- 抓柄 -->
+    <Style x:Key="VrSliderThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid Background="Transparent">
+                        <Border x:Name="cap"
+                                Background="{StaticResource VrSliderThumbBrush}"
+                                BorderBrush="{StaticResource VrSliderThumbBorderBrush}"
+                                BorderThickness="2"
+                                CornerRadius="9">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.45" ShadowDepth="2"/>
+                            </Border.Effect>
+
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <Rectangle Width="2" Height="12" Fill="{StaticResource VrSliderThumbGripBrush}" RadiusX="1" RadiusY="1"/>
+                                <Rectangle Width="2" Height="12" Margin="4 0 0 0" Fill="{StaticResource VrSliderThumbGripBrush}" RadiusX="1" RadiusY="1"/>
+                                <Rectangle Width="2" Height="12" Margin="4 0 0 0" Fill="{StaticResource VrSliderThumbGripBrush}" RadiusX="1" RadiusY="1"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
                     <ControlTemplate.Triggers>
-                        <Trigger Property="TickPlacement" Value="TopLeft">
-                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible"/>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="cap" Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
                         </Trigger>
-                        <Trigger Property="TickPlacement" Value="BottomRight">
-                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible"/>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="cap" Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                            <Setter TargetName="cap" Property="BorderThickness" Value="2"/>
                         </Trigger>
-                        <Trigger Property="TickPlacement" Value="Both">
-                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                        <Trigger Property="IsSelectionRangeEnabled" Value="true">
-                            <Setter TargetName="PART_SelectionRange" Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                        <Trigger Property="IsDirectionReversed" Value="True">
-                            <Setter TargetName="activeTrack" Property="CornerRadius" Value="3,0,0,3"/>
-                            <Setter TargetName="activeTrack" Property="HorizontalAlignment" Value="Left"/>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="cap" Property="Opacity" Value="0.4"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
+    </Style>
+
+    <!-- 水平模板 -->
+    <ControlTemplate x:Key="VrSliderHorizontalTemplate" TargetType="{x:Type Slider}">
+        <Grid x:Name="root"
+              Margin="0 2"
+              Background="{TemplateBinding Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TickBar x:Name="TopTick"
+                     Grid.Row="0"
+                     Height="4"
+                     Margin="0 0 0 2"
+                     Fill="{TemplateBinding Foreground}"
+                     Placement="Top"
+                     Visibility="Collapsed"/>
+
+            <Track x:Name="PART_Track"
+                   Grid.Row="1"
+                   Height="44"
+                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VrSliderDecreaseButton}" Command="{x:Static Slider.DecreaseLarge}"/>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource VrSliderThumb}"/>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VrSliderIncreaseButton}" Command="{x:Static Slider.IncreaseLarge}"/>
+                </Track.IncreaseRepeatButton>
+            </Track>
+
+            <TickBar x:Name="BottomTick"
+                     Grid.Row="2"
+                     Height="4"
+                     Margin="0 2 0 0"
+                     Fill="{TemplateBinding Foreground}"
+                     Placement="Bottom"
+                     Visibility="Collapsed"/>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible"/>
+            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
             </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- 垂直模板 -->
+    <ControlTemplate x:Key="VrSliderVerticalTemplate" TargetType="{x:Type Slider}">
+        <Grid x:Name="root"
+              Margin="2 0"
+              Background="{TemplateBinding Background}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TickBar x:Name="LeftTick"
+                     Grid.Column="0"
+                     Width="4"
+                     Margin="0 0 2 0"
+                     Fill="{TemplateBinding Foreground}"
+                     Placement="Left"
+                     Visibility="Collapsed"/>
+
+            <Track x:Name="PART_Track"
+                   Grid.Column="1"
+                   Width="44"
+                   Orientation="Vertical"
+                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VrSliderDecreaseButtonVertical}" Command="{x:Static Slider.DecreaseLarge}"/>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource VrSliderThumb}"/>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource VrSliderIncreaseButtonVertical}" Command="{x:Static Slider.IncreaseLarge}"/>
+                </Track.IncreaseRepeatButton>
+            </Track>
+
+            <TickBar x:Name="RightTick"
+                     Grid.Column="2"
+                     Width="4"
+                     Margin="2 0 0 0"
+                     Fill="{TemplateBinding Foreground}"
+                     Placement="Right"
+                     Visibility="Collapsed"/>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter TargetName="LeftTick" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter TargetName="RightTick" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter TargetName="LeftTick" Property="Visibility" Value="Visible"/>
+                <Setter TargetName="RightTick" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="VrSliderBase" TargetType="{x:Type Slider}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="IsMoveToPointEnabled" Value="False"/>
+        <Setter Property="Template" Value="{StaticResource VrSliderHorizontalTemplate}"/>
+        <!-- 整个控件按相对拖动改值，灵敏度 0.5（拖满控件宽度 ≈ 半个量程） -->
+        <Setter Property="behaviours:SliderAssist.RelativeDrag" Value="True"/>
+        <Setter Property="behaviours:SliderAssist.DragSensitivity" Value="0.5"/>
+        <Setter Property="behaviours:SliderAssist.SnapToBounds" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{StaticResource VrSliderVerticalTemplate}"/>
+            </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <!-- 隐式样式：应用里所有未显式指定 Style 的 Slider 都走这里 -->
+    <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource VrSliderBase}"/>
+
+    <!-- 反向滑条（输出目标更新频率等），沿用同一外观 -->
+    <Style x:Key="MaterialDesignReversedSlider"
+           BasedOn="{StaticResource VrSliderBase}"
+           TargetType="{x:Type Slider}">
+        <Setter Property="IsDirectionReversed" Value="True"/>
     </Style>
 </ResourceDictionary>

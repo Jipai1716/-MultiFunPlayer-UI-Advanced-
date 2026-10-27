@@ -84,7 +84,7 @@
                             <TextBlock DockPanel.Dock="Left"
                                        Margin="0 0 10 0"
                                        VerticalAlignment="Center"
-                                       Text="Interpolation type:"/>
+                                       Text="插值类型："/>
 
                             <ComboBox DockPanel.Dock="Left"
                                       ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type common:InterpolationType}}}"
@@ -95,7 +95,7 @@
                             <TextBlock DockPanel.Dock="Left"
                                        Margin="0 0 10 0"
                                        VerticalAlignment="Center"
-                                       Text="Duration:"/>
+                                       Text="时长："/>
 
                             <metro:NumericUpDown x:Name="CustomCurveMotionProviderPointsTemplateDuration"
                                                  Maximum="60"

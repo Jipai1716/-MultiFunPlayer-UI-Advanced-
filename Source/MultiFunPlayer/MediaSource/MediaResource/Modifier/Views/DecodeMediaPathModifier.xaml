@@ -15,7 +15,7 @@
                    VerticalAlignment="Center"
                    FontSize="12"
                    FontWeight="Bold"
-                   Text="Decode type:"/>
+                   Text="解码类型："/>
 
         <ComboBox ItemsSource="{Binding Source={ui:EnumBindingSource {x:Type vm:DecodeType}}}" SelectedItem="{Binding DecodeType}"/>
     </StackPanel>

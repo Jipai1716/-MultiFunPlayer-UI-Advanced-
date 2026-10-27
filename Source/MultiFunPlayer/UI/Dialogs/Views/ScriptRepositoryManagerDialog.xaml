@@ -16,7 +16,7 @@
                    VerticalAlignment="Top"
                    FontSize="14"
                    FontWeight="Bold"
-                   Text="Script repositories"
+                   Text="脚本库"
                    Typography.Capitals="AllSmallCaps"/>
 
         <Button DockPanel.Dock="Top"

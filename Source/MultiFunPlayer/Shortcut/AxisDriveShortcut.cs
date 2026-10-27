@@ -1,9 +1,9 @@
-using MultiFunPlayer.Input;
+﻿using MultiFunPlayer.Input;
 using System.ComponentModel;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Axis Drive")]
+[DisplayName("轴驱动")]
 internal sealed class AxisDriveShortcut(IShortcutActionRunner actionRunner, IAxisInputGestureDescriptor gesture)
     : AbstractShortcut<IAxisInputGesture, IAxisInputGestureData>(actionRunner, gesture)
 {

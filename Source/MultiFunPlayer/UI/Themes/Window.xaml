@@ -327,7 +327,7 @@
 
                                     <Button x:Name="PART_MinimizeButton"
                                             Style="{StaticResource WindowMinimizeButtonStyle}"
-                                            ToolTip="Minimize">
+                                            ToolTip="最小化">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource WindowCaptionButtonVisibilityConverter}">
                                                 <Binding ElementName="PART_MinimizeButton" Mode="OneTime"/>
@@ -374,7 +374,7 @@
                                     </Button>
                                     <Button x:Name="PART_CloseButton"
                                             Style="{StaticResource WindowCloseButtonStyle}"
-                                            ToolTip="Close">
+                                            ToolTip="关闭">
                                         <Button.Visibility>
                                             <MultiBinding Converter="{StaticResource WindowCaptionButtonVisibilityConverter}">
                                                 <Binding ElementName="PART_CloseButton" Mode="OneTime"/>

@@ -1,4 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf;
 using MultiFunPlayer.Common;
 using MultiFunPlayer.UI;
 using MultiFunPlayer.UI.Controls.ViewModels;
@@ -31,7 +31,7 @@ internal sealed class RootViewModel : Conductor<IScreen>.Collection.AllActive, I
 
     public bool DisablePopup { get; set; }
 
-    public double WindowWidth { get; set; } = 600;
+    public double WindowWidth { get; set; } = 900;
     public double WindowHeight { get; set; }
     public double WindowLeft { get; set; }
     public double WindowTop { get; set; }

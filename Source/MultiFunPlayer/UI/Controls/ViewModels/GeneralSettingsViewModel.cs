@@ -1,4 +1,4 @@
-﻿using MultiFunPlayer.Common;
+using MultiFunPlayer.Common;
 using MultiFunPlayer.Settings;
 using Newtonsoft.Json.Linq;
 using NLog;
@@ -80,10 +80,19 @@ internal sealed class GeneralSettingsViewModel : Screen, IHandle<SettingsMessage
         if (window == null)
             return;
 
+        // VR 优化：窗口默认更宽，并允许在合理范围内自由缩放
         if (AppOrientation == Orientation.Vertical)
-            window.Width = window.MinWidth = window.MaxWidth = 600;
+        {
+            window.MinWidth = 720;
+            window.MaxWidth = 1600;
+            window.Width = 900;
+        }
         else if (AppOrientation == Orientation.Horizontal)
-            window.Width = window.MinWidth = window.MaxWidth = 1200;
+        {
+            window.MinWidth = 1100;
+            window.MaxWidth = 2400;
+            window.Width = 1500;
+        }
     }
 
     public void OnLogLevelChanged()

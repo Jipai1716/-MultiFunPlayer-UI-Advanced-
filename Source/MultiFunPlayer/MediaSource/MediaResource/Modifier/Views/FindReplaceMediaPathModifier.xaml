@@ -11,23 +11,23 @@
     <StackPanel>
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  VerticalAlignment="Center"
-                 material:HintAssist.Hint="Find"
+                 material:HintAssist.Hint="查找"
                  FontFamily="Consolas"
                  Text="{Binding Find}"/>
 
         <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  Margin="0 0 0 10"
                  VerticalAlignment="Center"
-                 material:HintAssist.Hint="Replace"
+                 material:HintAssist.Hint="替换"
                  FontFamily="Consolas"
                  Text="{Binding Replace}"/>
 
         <WrapPanel Margin="-10">
             <CheckBox Margin="10"
-                      Content="Match case"
+                      Content="区分大小写"
                       IsChecked="{Binding MatchCase}"/>
             <CheckBox Margin="10"
-                      Content="Use regular expressions"
+                      Content="使用正则表达式"
                       IsChecked="{Binding UseRegularExpressions}"/>
         </WrapPanel>
     </StackPanel>

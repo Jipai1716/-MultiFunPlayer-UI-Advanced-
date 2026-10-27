@@ -245,20 +245,20 @@ internal sealed class XBVRScriptRepository : AbstractScriptRepository
 
 internal enum XBVRLocalMatchType
 {
-    [Description("Don't match scripts using local repository")]
+    [Description("不使用本地脚本库匹配脚本")]
     None,
-    [Description("Match scripts based on currently playing XBVR file name using local repository")]
+    [Description("依据当前播放的 XBVR 文件名在本地库匹配脚本")]
     MatchToCurrentFile
 }
 
 internal enum XBVRDmsMatchType
 {
-    [Description("Don't match scripts using XBVR")]
+    [Description("不使用 XBVR 匹配脚本")]
     None,
-    [Description("Match all scripts attached to XBVR scene, for each axis only use the first matched script")]
+    [Description("匹配 XBVR 场景的全部脚本，每个轴只使用第一个匹配到的脚本")]
     MatchAllUseFirst,
-    [Description("Match scripts attached to XBVR scene based on currently playing XBVR file name")]
+    [Description("依据当前播放的 XBVR 文件名匹配场景脚本")]
     MatchToCurrentFile,
-    [Description("Match only scripts selected in XBVR scene")]
+    [Description("仅匹配 XBVR 场景中被选中的脚本")]
     MatchSelectedOnly,
 }

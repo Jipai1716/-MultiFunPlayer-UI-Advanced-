@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Button Release")]
+[DisplayName("按键释放")]
 internal sealed class ButtonReleaseShortcut(IShortcutActionRunner actionRunner, IButtonInputGestureDescriptor gesture)
     : AbstractShortcut<IButtonInputGesture, IEmptyInputGestureData>(actionRunner, gesture)
 {

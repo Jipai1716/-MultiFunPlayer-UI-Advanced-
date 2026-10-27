@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace MultiFunPlayer.MotionProvider.ViewModels;
 
-[DisplayName("Random")]
+[DisplayName("随机")]
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 internal sealed class RandomMotionProvider : AbstractMotionProvider
 {

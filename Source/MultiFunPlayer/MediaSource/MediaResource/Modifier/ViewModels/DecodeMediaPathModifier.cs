@@ -4,7 +4,7 @@ using System.Web;
 
 namespace MultiFunPlayer.MediaSource.MediaResource.Modifier.ViewModels;
 
-[DisplayName("Decode")]
+[DisplayName("解码")]
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 internal sealed class DecodeMediaPathModifier : AbstractMediaPathModifier
 {

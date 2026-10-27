@@ -21,7 +21,7 @@
                                FontSize="14"
                                FontWeight="Bold"
                                Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"
-                               Text="Settings"
+                               Text="设置"
                                Typography.Capitals="AllSmallCaps"/>
 
                     <Button Style="{StaticResource MaterialDesignFlatButton}"

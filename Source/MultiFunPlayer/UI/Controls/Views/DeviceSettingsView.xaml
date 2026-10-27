@@ -44,7 +44,7 @@
                 <TextBlock DockPanel.Dock="Left"
                            Margin="0 0 10 0"
                            VerticalAlignment="Center"
-                           Text="Selected device:"/>
+                           Text="所选设备："/>
 
                 <Button DockPanel.Dock="Right"
                         Style="{StaticResource MaterialDesignFlatButton}"
@@ -55,7 +55,7 @@
                         Click="{s:Action OnRemoveSelectedDevice}"
                         Foreground="{DynamicResource MaterialDesignErrorBrush}"
                         IsEnabled="{Binding CanRemoveSelectedDevice}"
-                        ToolTip="Remove selected">
+                        ToolTip="移除所选">
                     <material:PackIcon Kind="Delete"/>
                 </Button>
                 <Button DockPanel.Dock="Right"
@@ -65,7 +65,7 @@
                         Padding="0"
                         Click="{s:Action OnRenameSelectedDevice}"
                         IsEnabled="{Binding CanRenameSelectedDevice}"
-                        ToolTip="Rename selected">
+                        ToolTip="重命名所选">
                     <material:PackIcon Kind="Pencil"/>
                 </Button>
                 <Button DockPanel.Dock="Right"
@@ -75,7 +75,7 @@
                         Padding="0"
                         Click="{s:Action OnExportSelectedDevice}"
                         IsEnabled="{Binding CanExportSelectedDevice}"
-                        ToolTip="Export selected to clipboard">
+                        ToolTip="导出所选到剪贴板">
                     <material:PackIcon Kind="Export"/>
                 </Button>
                 <Button DockPanel.Dock="Right"
@@ -84,7 +84,7 @@
                         Height="24"
                         Padding="0"
                         Click="{s:Action OnImportDevice}"
-                        ToolTip="Create from clipboard">
+                        ToolTip="从剪贴板创建">
                     <material:PackIcon Kind="Import"/>
                 </Button>
                 <Button DockPanel.Dock="Right"
@@ -93,7 +93,7 @@
                         Height="24"
                         Padding="0"
                         Click="{s:Action OnCloneDevice}"
-                        ToolTip="Clone selected">
+                        ToolTip="克隆所选">
                     <material:PackIcon Kind="ContentDuplicate"/>
                 </Button>
 
@@ -120,7 +120,7 @@
 
                                 <TextBlock VerticalAlignment="Center"
                                            FontWeight="Bold"
-                                           Text=" (default)"
+                                           Text="（默认）"
                                            Visibility="{Binding IsDefault, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -145,7 +145,7 @@
                     <TextBlock DockPanel.Dock="Right"
                                Margin="50 0 0 0"
                                VerticalAlignment="Center"
-                               Text="Clone this device to customize all settings."/>
+                               Text="克隆该设备后可自定义全部设置。"/>
                 </DockPanel>
             </material:Card>
 
@@ -161,7 +161,7 @@
                         <TextBlock DockPanel.Dock="Left"
                                    Margin="0 0 10 0"
                                    VerticalAlignment="Center"
-                                   Text="Output precision:"/>
+                                   Text="输出精度："/>
 
                         <metro:NumericUpDown DockPanel.Dock="Left"
                                              Width="50"
@@ -214,19 +214,19 @@
                                                 CellStyle="{StaticResource IsDefaultCellStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                Header="Name"/>
+                                                Header="名称"/>
 
                             <DataGridTextColumn Binding="{Binding FriendlyName}"
                                                 CellStyle="{StaticResource IsDefaultCellStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                Header="Friendly name"/>
+                                                Header="友好名称"/>
 
                             <DataGridTextColumn Binding="{Binding FunscriptNames, Converter={StaticResource FunscriptNameListToStringConverter}}"
                                                 CellStyle="{StaticResource IsDefaultCellStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                Header="Funscript names">
+                                                Header="Funscript 名称">
                                 <DataGridTextColumn.HeaderStyle>
                                     <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="ContentTemplate">
@@ -267,7 +267,7 @@
 
                             <metro:DataGridNumericUpDownColumn Binding="{Binding DefaultValue}"
                                                                CellStyle="{StaticResource IsDefaultCellStyle}"
-                                                               Header="Default value"
+                                                               Header="默认值"
                                                                HideUpDownButtons="True"
                                                                Maximum="1"
                                                                Minimum="0"
@@ -276,7 +276,7 @@
                             <DataGridCheckBoxColumn Binding="{Binding Enabled, UpdateSourceTrigger=PropertyChanged}"
                                                     EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                                     ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
-                                                    Header="Enabled"/>
+                                                    Header="已启用"/>
 
                             <DataGridTemplateColumn CellStyle="{StaticResource IsDefaultCellStyle}">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -290,7 +290,7 @@
                                                 material:RippleAssist.Feedback="{DynamicResource MaterialDesignErrorBrush}"
                                                 Click="{s:Action OnDeleteAxis}"
                                                 Foreground="{DynamicResource MaterialDesignErrorBrush}"
-                                                ToolTip="Remove">
+                                                ToolTip="移除">
                                             <material:PackIcon Kind="Delete"/>
                                         </Button>
                                     </DataTemplate>

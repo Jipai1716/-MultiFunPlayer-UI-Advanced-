@@ -1,5 +1,6 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:behaviours="clr-namespace:MultiFunPlayer.UI.Behaviours"
                     xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
     <Style x:Key="MaterialDesignCompactRangeSliderThumb"
@@ -53,19 +54,19 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid x:Name="thumbGrid"
-                          Width="12"
-                          Height="14">
+                          Width="30"
+                          Height="34">
                         <Ellipse x:Name="halo"
-                                 Width="30"
-                                 Height="30"
-                                 Margin="-15"
+                                 Width="48"
+                                 Height="48"
+                                 Margin="-24"
                                  Fill="{TemplateBinding Foreground}"
                                  IsHitTestVisible="False"
                                  Opacity="0"/>
                         <Ellipse x:Name="focusedHalo"
-                                 Width="30"
-                                 Height="30"
-                                 Margin="-15"
+                                 Width="48"
+                                 Height="48"
+                                 Margin="-24"
                                  Fill="{TemplateBinding Foreground}"
                                  IsHitTestVisible="False"
                                  Opacity="0.15"
@@ -79,16 +80,16 @@
                                 <BitmapCache SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </AdornerDecorator.CacheMode>
                             <Ellipse x:Name="grip"
-                                     Margin="-1 0"
+                                     Margin="-2 0"
                                      Effect="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}, Path=(material:ShadowAssist.ShadowDepth), Converter={x:Static material:ShadowConverter.Instance}}"
                                      Fill="{TemplateBinding Foreground}"/>
                         </AdornerDecorator>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType=RangeBase}}" Value="{x:Static Orientation.Vertical}">
-                            <Setter TargetName="thumbGrid" Property="Height" Value="12"/>
-                            <Setter TargetName="thumbGrid" Property="Width" Value="14"/>
-                            <Setter TargetName="grip" Property="Margin" Value="0 -1"/>
+                            <Setter TargetName="thumbGrid" Property="Height" Value="30"/>
+                            <Setter TargetName="thumbGrid" Property="Width" Value="34"/>
+                            <Setter TargetName="grip" Property="Margin" Value="0 -2"/>
                         </DataTrigger>
 
                         <DataTrigger Value="True">
@@ -151,7 +152,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type metro:MetroThumb}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Rectangle Height="4"
+                        <Rectangle Height="10"
                                    Margin="-2 0"
                                    Fill="{TemplateBinding Foreground}"/>
                     </Grid>
@@ -167,7 +168,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type metro:MetroThumb}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Rectangle Width="4"
+                        <Rectangle Width="10"
                                    Margin="0 -2"
                                    Fill="{TemplateBinding Foreground}"/>
                     </Grid>
@@ -187,7 +188,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Rectangle Height="3"
+                        <Rectangle Height="10"
                                    Fill="{TemplateBinding Foreground}"
                                    Opacity="0.38"
                                    RadiusX="2"
@@ -205,7 +206,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Grid Background="{TemplateBinding Background}">
-                        <Rectangle Width="3"
+                        <Rectangle Width="10"
                                    Fill="{TemplateBinding Foreground}"
                                    Opacity="0.38"
                                    RadiusX="2"
@@ -370,6 +371,11 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Margin" Value="6 0"/>
+        <Setter Property="MinHeight" Value="44"/>
+        <!-- VR：整个控件可按相对拖动，自动选最近的柄；灵敏度 0.5，两端/中点吸附 -->
+        <Setter Property="behaviours:RangeSliderAssist.RelativeDrag" Value="True"/>
+        <Setter Property="behaviours:RangeSliderAssist.DragSensitivity" Value="0.5"/>
+        <Setter Property="behaviours:RangeSliderAssist.SnapToBounds" Value="True"/>
         <Setter Property="metro:SliderHelper.ThumbFillBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>
         <Setter Property="metro:SliderHelper.ThumbFillDisabledBrush" Value="{DynamicResource MaterialDesignCheckBoxDisabled}"/>
         <Setter Property="metro:SliderHelper.ThumbFillHoverBrush" Value="{DynamicResource PrimaryHueMidBrush}"/>

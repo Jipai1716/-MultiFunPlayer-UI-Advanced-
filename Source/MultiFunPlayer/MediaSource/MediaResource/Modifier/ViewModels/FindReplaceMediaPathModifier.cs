@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace MultiFunPlayer.MediaSource.MediaResource.Modifier.ViewModels;
 
-[DisplayName("Find/Replace")]
+[DisplayName("查找/替换")]
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 internal sealed class FindReplaceMediaPathModifier : AbstractMediaPathModifier
 {

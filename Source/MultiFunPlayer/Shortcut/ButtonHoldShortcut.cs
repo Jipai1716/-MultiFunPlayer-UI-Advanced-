@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MultiFunPlayer.Shortcut;
 
-[DisplayName("Button Hold")]
+[DisplayName("按键长按")]
 internal sealed class ButtonHoldShortcut(IShortcutActionRunner actionRunner, IButtonInputGestureDescriptor gesture)
     : AbstractShortcut<IButtonInputGesture, IEmptyInputGestureData>(actionRunner, gesture)
 {
