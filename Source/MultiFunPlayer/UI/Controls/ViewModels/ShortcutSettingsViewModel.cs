@@ -44,7 +44,7 @@ internal sealed class ShortcutSettingsViewModel : Screen, IHandle<SettingsMessag
 
     public ShortcutSettingsViewModel(IShortcutManager shortcutManager, IPropertyManager propertyManager, IShortcutFactory shortcutFactory, IEventAggregator eventAggregator)
     {
-        DisplayName = "Shortcut";
+        DisplayName = "快捷键";
         _shortcutManager = shortcutManager;
         _shortcutFactory = shortcutFactory;
 

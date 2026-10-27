@@ -23,7 +23,7 @@ internal sealed class ThemeSettingsViewModel : Screen, IHandle<SettingsMessage>
 
     public ThemeSettingsViewModel(IEventAggregator eventAggregator)
     {
-        DisplayName = "Theme";
+        DisplayName = "主题";
         eventAggregator.Subscribe(this);
         _paletteHelper = new PaletteHelper();
     }

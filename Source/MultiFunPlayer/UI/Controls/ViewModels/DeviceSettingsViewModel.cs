@@ -17,7 +17,7 @@ internal sealed class DeviceSettingsViewModel : Screen, IHandle<SettingsMessage>
 
     public DeviceSettingsViewModel(IEventAggregator eventAggregator)
     {
-        DisplayName = "Device";
+        DisplayName = "设备";
         eventAggregator.Subscribe(this);
     }
 

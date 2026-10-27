@@ -1,4 +1,4 @@
-using MultiFunPlayer.Common;
+﻿using MultiFunPlayer.Common;
 using MultiFunPlayer.Settings;
 using Newtonsoft.Json.Linq;
 using NLog;
@@ -36,7 +36,7 @@ internal sealed class GeneralSettingsViewModel : Screen, IHandle<SettingsMessage
 
     public GeneralSettingsViewModel(INewtonsoftJsonLoggerManager newtonsoftLoggerManager, IStyletLoggerManager styletLoggerManager, IEventAggregator eventAggregator)
     {
-        DisplayName = "General";
+        DisplayName = "常规";
         eventAggregator.Subscribe(this);
 
         _newtonsoftLoggerManager = newtonsoftLoggerManager;

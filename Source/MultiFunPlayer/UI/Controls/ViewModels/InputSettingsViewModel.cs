@@ -9,7 +9,7 @@ internal sealed class InputSettingsViewModel : Conductor<IInputProcessorSettings
 {
     public InputSettingsViewModel(IEventAggregator eventAggregator, IEnumerable<IInputProcessorSettings> processorSettings)
     {
-        DisplayName = "Input";
+        DisplayName = "输入";
         Items.AddRange(processorSettings.OrderBy(p => p.Name));
 
         eventAggregator.Subscribe(this);
